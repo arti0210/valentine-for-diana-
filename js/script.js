@@ -2,10 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const yesBtn = document.getElementById('yesBtn');
   const noBtn = document.getElementById('noBtn');
   const screen = document.getElementById('screen');
-  const title = document.getElementById('title');
-  const message = document.getElementById('message');
   const heartsContainer = document.getElementById('hearts');
   const body = document.body;
+  const notification = document.getElementById('notification');
 
   // Создание сердечек
   function createHearts(count, isBig = false) {
@@ -22,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
       heart.style.animationIterationCount = 'infinite';
 
       if (isBig) {
-        heart.style.fontSize = '48px'; // ~в 3 раза больше
+        heart.style.fontSize = '48px';
         heart.style.animationName = 'fall-big';
       } else {
         heart.style.fontSize = Math.random() * 24 + 16 + 'px';
@@ -49,24 +48,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Кнопка "ДА"
   yesBtn.addEventListener('click', () => {
-    // Меняем фон
+    // 1. Меняем фон
     body.style.background = "url('/assets/bg-yes.jpg') no-repeat center center fixed";
     body.style.backgroundSize = "cover";
 
-    // Большие сердечки
+    // 2. Большие сердечки
     createHearts(20, true);
 
-    // Обновляем текст
-    title.textContent = 'Ура! 💖';
-    message.textContent = 'Я так и знал! С Днём святого Валентина!';
+    // 3. Скрываем основной экран
+    screen.style.display = 'none';
 
-    // Показываем уведомление
-    const notification = document.getElementById('notification');
+    // 4. Показываем чёрное уведомление
     notification.style.display = 'block';
 
-    // Кнопка "Закрыть" в уведомлении
+    // 5. Кнопка "Закрыть" — скрывает уведомление, но НЕ возвращает экран
     document.getElementById('closeNotification').onclick = () => {
       notification.style.display = 'none';
+      // Опционально: можно оставить фон и сердечки — они уже установлены
     };
   });
 
@@ -79,6 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
     noBtn.style.top = `${y}px`;
   });
 
-  // Инициализация
+  // Инициализация: обычные сердечки
   createHearts(20, false);
 });
