@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #d81b60;
+  position: relative;
+  overflow: hidden;
+  /* Фоновое изображение */
+  background: url('/assets/bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Полупрозрачный фон для текста (чтобы читалось на любом фоне) */
+.container {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.85); /* белый с прозрачностью */
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-width: 90%;
+  z-index: 10;
+}
+
+h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  color: #e91e63;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.7);
+}
+
+.message {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  color: #555;
+  font-weight: 300;
+}
+
+.buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#yesBtn, #noBtn {
+  padding: 14px 32px;
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+#yesBtn {
+  background: #e91e63;
+  color: white;
+  box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+}
+
+#yesBtn:hover {
+  background: #c2185b;
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(233, 30, 99, 0.6);
+}
+
+#noBtn {
+  background: #f8f9fa;
+  color: #555;
+  border: 2px solid #e0e0e0;
+  position: relative;
+}
+
+#noBtn:hover {
+  background: #ffebee;
+  border-color: #e91e63;
+}
+
+/* Сердечки — остаются как есть */
+.hearts {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
