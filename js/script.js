@@ -1,14 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
   const yesBtn = document.getElementById('yesBtn');
   const noBtn = document.getElementById('noBtn');
-  const mainScreen = document.getElementById('mainScreen');
-  const yesScreen = document.getElementById('yesScreen');
+  const screen = document.getElementById('screen');
+  const title = document.getElementById('title');
+  const message = document.getElementById('message');
   const heartsContainer = document.getElementById('hearts');
   const body = document.body;
 
-  // 🌟 Создаём сердечки (обычные)
+  // Создание сердечек
   function createHearts(count, isBig = false) {
-    heartsContainer.innerHTML = ''; // очищаем
+    heartsContainer.innerHTML = '';
     for (let i = 0; i < count; i++) {
       const heart = document.createElement('div');
       heart.innerHTML = '❤️';
@@ -21,8 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
       heart.style.animationIterationCount = 'infinite';
 
       if (isBig) {
-        heart.style.fontSize = '48px'; // 3× от 16px (стандартного)
-        heart.classList.add('big-heart');
+        heart.style.fontSize = '48px'; // ~в 3 раза больше
         heart.style.animationName = 'fall-big';
       } else {
         heart.style.fontSize = Math.random() * 24 + 16 + 'px';
@@ -33,45 +33,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 🔁 Анимация падения (обычная)
+  // Анимации
   const style = document.createElement('style');
   style.textContent = `
     @keyframes fall {
       0% { transform: translateY(0) rotate(0deg); opacity: 1; }
       100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
+    @keyframes fall-big {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
   `;
   document.head.appendChild(style);
 
-  // ✅ Кнопка "ДА"
+  // Кнопка "ДА"
   yesBtn.addEventListener('click', () => {
-    // 1. Меняем фон
+    // Меняем фон
     body.style.background = "url('/assets/bg-yes.jpg') no-repeat center center fixed";
     body.style.backgroundSize = "cover";
 
-    // 2. Увеличиваем сердечки в 3 раза
-    createHearts(20, true); // big hearts
+    // Большие сердечки
+    createHearts(20, true);
 
-    // 3. Показываем новый экран
-    mainScreen.style.display = 'none';
-    yesScreen.style.display = 'block';
+    // Обновляем текст
+    title.textContent = 'Ура! 💖';
+    message.textContent = 'Я так и знал! С Днём святого Валентина!';
 
-    // 4. Уведомление (опционально — как на вашем скриншоте)
-    alert('Ура! Я так и знал! 💖\nС Днём святого Валентина!');
+    // Показываем уведомление
+    const notification = document.getElementById('notification');
+    notification.style.display = 'block';
+
+    // Кнопка "Закрыть" в уведомлении
+    document.getElementById('closeNotification').onclick = () => {
+      notification.style.display = 'none';
+    };
   });
 
-  // 🎯 Кнопка "Закрыть" (после Да)
-  document.getElementById('closeBtn').addEventListener('click', () => {
-    yesScreen.style.display = 'none';
-    mainScreen.style.display = 'block';
-    // Возвращаем обычные сердечки
-    createHearts(20, false);
-    // Возвращаем старый фон (если нужно)
-    body.style.background = "url('/assets/bg.jpg') no-repeat center center fixed";
-    body.style.backgroundSize = "cover";
-  });
-
-  // 🐭 Кнопка "НЕТ" — убегает (оставляем как было)
+  // Кнопка "НЕТ" — убегает
   noBtn.addEventListener('mouseover', () => {
     const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
     const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
@@ -80,6 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
     noBtn.style.top = `${y}px`;
   });
 
-  // 🚀 Инициализируем обычные сердечки
+  // Инициализация
   createHearts(20, false);
 });
