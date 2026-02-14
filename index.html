@@ -7,16 +7,24 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>Диана...</h1>
-    <p class="message">Можно я стану твоей валентинкой?</p>
-    <div class="buttons">
-      <button id="yesBtn">ДА ❤️</button>
-      <button id="noBtn">нет</button>
-    </div>
+  <!-- Основной экран -->
+<div class="container" id="mainScreen">
+  <h1>Диана...</h1>
+  <p class="message">Можно я стану твоей валентинкой?</p>
+  <div class="buttons">
+    <button id="yesBtn">ДА ❤️</button>
+    <button id="noBtn">нет</button>
   </div>
+</div>
 
-  <div class="hearts" id="hearts"></div>
+<!-- Экран после "ДА" (изначально скрыт) -->
+<div class="container" id="yesScreen" style="display: none;">
+  <h1>Ура! 💖</h1>
+  <p class="message">Я так и знал! С Днём святого Валентина Любимка!</p>
+  <button id="closeBtn" class="btn-close">Закрыть</button>
+</div>
+
+<div class="hearts" id="hearts"></div>
 
   <script src="js/script.js"></script>
 </body>

@@ -95,3 +95,42 @@ h1 {
   pointer-events: none;
   z-index: 1;
 }
+
+/* --- Новое состояние после "ДА" --- */
+#yesScreen {
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 20;
+}
+
+#yesScreen h1 {
+  color: #e91e63;
+  font-size: 3.2rem;
+}
+
+.btn-close {
+  padding: 12px 28px;
+  font-size: 1.2rem;
+  background: #f44336;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.3s;
+}
+
+.btn-close:hover {
+  background: #d32f2f;
+  transform: scale(1.05);
+}
+
+/* --- Анимация сердечек после "ДА" --- */
+.hearts .big-heart {
+  animation: fall-big 6s linear infinite;
+  font-size: 48px !important; /* в 3 раза больше */
+}
+
+@keyframes fall-big {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
